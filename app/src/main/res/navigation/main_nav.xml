@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/schoolFragment">
+
+    <fragment
+        android:id="@+id/schoolFragment"
+        android:name="com.example.mobdevproject.view.SchoolFragment"
+        android:label="@string/title_school"
+        tools:layout="@layout/fragment_school" >
+        <action
+            android:id="@+id/action_schoolFragment_to_testFragment2"
+            app:destination="@id/testFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/assessmentFragment"
+        android:name="com.example.mobdevproject.view.AssessmentFragment"
+        android:label="@string/title_assessment"
+        tools:layout="@layout/fragment_assessment" />
+    <fragment
+        android:id="@+id/testFragment2"
+        android:name="com.example.mobdevproject.view.TestFragment"
+        android:label="Тест"
+        tools:layout="@layout/fragment_test" >
+        <action
+            android:id="@+id/action_testFragment2_to_testResultsFragment2"
+            app:destination="@id/testResultsFragment2"
+            app:popUpTo="@id/schoolFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/testResultsFragment2"
+        android:name="com.example.mobdevproject.view.TestResultsFragment"
+        android:label="Результаты"
+        tools:layout="@layout/test_results_fragment" >
+        <action
+            android:id="@+id/action_testResultsFragment2_to_schoolFragment"
+            app:destination="@id/schoolFragment" />
+    </fragment>
+</navigation>
