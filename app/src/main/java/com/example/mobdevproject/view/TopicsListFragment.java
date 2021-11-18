@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.mobdevproject.R;
-import com.example.mobdevproject.view_model.TopicsListViewModel;
+import com.example.mobdevproject.view_model.TopicsViewModel;
 
 public class TopicsListFragment extends Fragment {
 
-    private TopicsListViewModel viewModel;
+    private TopicsViewModel viewModel;
 
     public static TopicsListFragment newInstance() {
         return new TopicsListFragment();
@@ -30,7 +30,7 @@ public class TopicsListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        viewModel = new ViewModelProvider(this).get(TopicsListViewModel.class);
+        viewModel = new ViewModelProvider(this).get(TopicsViewModel.class);
 
         View view = inflater.inflate(R.layout.topics_list_fragment, container, false);
 

@@ -2,8 +2,8 @@ package com.example.mobdevproject.view_model;
 
 import androidx.lifecycle.ViewModel;
 
+
 import com.example.mobdevproject.model.Exercise;
-import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 
@@ -14,9 +14,6 @@ public class TestViewModel extends ViewModel {
     public TestViewModel() {
         exercises_list = new ArrayList<Exercise>();
 
-        for (int i = 1; i <= 10; i++) {
-            exercises_list.add(new Exercise(i,"Question " + i, "a"));
-        }
     }
 
     public TestViewModel(ArrayList<Exercise> exercises_list) {
@@ -58,12 +55,9 @@ public class TestViewModel extends ViewModel {
         double mark_double = 0;
         String mark_string = "";
 
-        for (Exercise ex : exercises_list) { // 2
-            if (ex.getAnswer() == ex.getCorrectAnswer()) // 3
-                n_correct++; // 4
-        } // 5
+        n_correct = countCorrectAnswers();
 
-        n_all = exercises_list.size(); // 6
+        n_all = countExercises(); // 6
 
         if (n_all > 0) {// 7
             mark_double = (double) n_correct / n_all * 100; // 8
@@ -89,6 +83,11 @@ public class TestViewModel extends ViewModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int countExercises()
+    {
+        return exercises_list.size();
     }
 
 }

@@ -1,20 +1,27 @@
 package com.example.mobdevproject.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Topic {
-    private int topicId;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "title")
     private String title;
 
-    public Topic(int topicId, String title) {
-        this.topicId = topicId;
+    public Topic(String title) {
         this.title = title;
     }
 
-    public int getTopicId() {
-        return topicId;
+    public int getId() {
+        return id;
     }
 
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

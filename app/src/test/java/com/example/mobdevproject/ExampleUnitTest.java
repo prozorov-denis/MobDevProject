@@ -1,8 +1,12 @@
 package com.example.mobdevproject;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 import com.example.mobdevproject.model.Exercise;
 import com.example.mobdevproject.view_model.TestViewModel;
@@ -14,7 +18,65 @@ import java.util.ArrayList;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
+@RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
+
+    @Test
+    public void a_mark_test_mock() {
+        TestViewModel testViewModel = new TestViewModel();
+        TestViewModel spyTestViewModel = Mockito.spy(testViewModel);
+
+        when(spyTestViewModel.countCorrectAnswers()).thenReturn(10);
+        when(spyTestViewModel.countExercises()).thenReturn(10);
+
+        assertEquals("Отлично", spyTestViewModel.getMark());
+    }
+
+    @Test
+    public void b_mark_test_mock() {
+        TestViewModel testViewModel = new TestViewModel();
+        TestViewModel spyTestViewModel = Mockito.spy(testViewModel);
+
+        when(spyTestViewModel.countCorrectAnswers()).thenReturn(7);
+        when(spyTestViewModel.countExercises()).thenReturn(10);
+
+        assertEquals("Хорошо", spyTestViewModel.getMark());
+    }
+
+    @Test
+    public void c_mark_test_mock() {
+        TestViewModel testViewModel = new TestViewModel();
+        TestViewModel spyTestViewModel = Mockito.spy(testViewModel);
+
+        when(spyTestViewModel.countCorrectAnswers()).thenReturn(5);
+        when(spyTestViewModel.countExercises()).thenReturn(10);
+
+        assertEquals("Удовлетворительно", spyTestViewModel.getMark());
+    }
+
+    @Test
+    public void d_mark_test_mock() {
+        TestViewModel testViewModel = new TestViewModel();
+        TestViewModel spyTestViewModel = Mockito.spy(testViewModel);
+
+        when(spyTestViewModel.countCorrectAnswers()).thenReturn(2);
+        when(spyTestViewModel.countExercises()).thenReturn(10);
+
+        assertEquals("Неудовлетворительно", spyTestViewModel.getMark());
+    }
+
+    @Test
+    public void error_mark_test_mock() {
+        TestViewModel testViewModel = new TestViewModel();
+        TestViewModel spyTestViewModel = Mockito.spy(testViewModel);
+
+        when(spyTestViewModel.countCorrectAnswers()).thenReturn(10);
+        when(spyTestViewModel.countExercises()).thenReturn(0);
+
+        assertEquals("Ошибка", spyTestViewModel.getMark());
+    }
+
     @Test
     public void a_mark_test() {
         TestViewModel testViewModel;

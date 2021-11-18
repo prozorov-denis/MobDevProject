@@ -1,4 +1,4 @@
-package com.example.mobdevproject.adapters;
+package com.example.mobdevproject.view.adapters;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mobdevproject.model.Exercise;
 import com.example.mobdevproject.R;
+import com.example.mobdevproject.model.Exercise;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     @Override
     public void onBindViewHolder(@NonNull ExercisesRecyclerViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
-        holder.getQuestionView().setText(String.valueOf(exercise.getText()));
+        holder.getQuestionView().setText(String.valueOf(exercise.getTask()));
         holder.getAnswerView().setText(String.valueOf(exercise.getAnswer()));
         holder.getAnswerView().addTextChangedListener(new TextWatcher() {
             @Override

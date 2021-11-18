@@ -1,8 +1,5 @@
 package com.example.mobdevproject.view;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -10,19 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.TextView;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdevproject.R;
-import com.example.mobdevproject.adapters.ExerciseAdapter;
+import com.example.mobdevproject.view.adapters.ExerciseAdapter;
 import com.example.mobdevproject.view_model.TestViewModel;
 
 import java.util.concurrent.TimeUnit;

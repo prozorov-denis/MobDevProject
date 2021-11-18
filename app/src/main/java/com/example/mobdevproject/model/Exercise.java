@@ -1,33 +1,58 @@
 package com.example.mobdevproject.model;
 
-public class Exercise {
+import static androidx.room.ForeignKey.CASCADE;
 
-    private int exerciseId;
-    private String text;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity
+public class Exercise {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "topicId")
+    private int topicId;
+
+    @ColumnInfo(name = "task")
+    private String task;
+
+    @ColumnInfo(name = "correctAnswer")
     private String correctAnswer;
+
+    @Ignore
     private String answer;
 
-    public Exercise(int exerciseId, String text, String correctAnswer) {
-        this.exerciseId = exerciseId;
-        this.text = text;
+    public Exercise(int topicId, String task, String correctAnswer) {
+        this.topicId = topicId;
+        this.task = task;
         this.correctAnswer = correctAnswer;
-        this.answer = "";
     }
 
-    public int getExerciseId() {
-        return exerciseId;
+    public int getId() {
+        return id;
     }
 
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public int getTopicId() {
+        return topicId;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTopicId(int topicId) {
+        this.topicId = topicId;
+    }
+
+    public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
     }
 
     public String getCorrectAnswer() {
