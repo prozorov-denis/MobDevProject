@@ -14,12 +14,14 @@ import java.util.List;
 public class TopicsViewModel extends AndroidViewModel {
     private EnglishDatabase db;
     private List<Topic> topics;
+    private Topic currentTopic;
 
     public TopicsViewModel(@NonNull Application application) {
         super(application);
 
-        db = EnglishDatabase.getDBInstance(application);
+        db = EnglishDatabase.getInstance(application);
         topics = db.englishDAO().getAllTopicsList();
+        currentTopic = topics.get(0);
     }
 
     public List<Topic> getTopics() {
@@ -28,5 +30,14 @@ public class TopicsViewModel extends AndroidViewModel {
 
     public void setTopics(ArrayList<Topic> topics) {
         this.topics = topics;
+    }
+
+    public void setCurrentTopic(String title) {
+        for (Topic t: topics) {
+            if (t.getTitle() == title) {
+                currentTopic = t;
+                return;
+            }
+        }
     }
 }

@@ -46,7 +46,7 @@ public class SchoolFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_school, container, false);
         topicsViewModel = new ViewModelProvider(this).get(TopicsViewModel.class);
-        //setListView(view);
+        setListView(view);
 
         return view;
     }
@@ -69,6 +69,7 @@ public class SchoolFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
+                topicsViewModel.setCurrentTopic(topics_titles.get(position));
                 Navigation.findNavController(view).navigate(R.id.action_schoolFragment_to_testFragment2);
             }
         });
