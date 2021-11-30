@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mobdevproject.R;
+import com.example.mobdevproject.view_model.SchoolViewModel;
 import com.example.mobdevproject.view_model.TestViewModel;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -29,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestResultsFragment extends Fragment {
 
-    private TestViewModel viewModel;
+    private SchoolViewModel viewModel;
 
     public static TestResultsFragment newInstance() {
         return new TestResultsFragment();
@@ -39,7 +40,7 @@ public class TestResultsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(TestViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
     }
 
     @Override
@@ -48,8 +49,17 @@ public class TestResultsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.test_results_fragment, container, false);
 
-        TextView textView = view.findViewById(R.id.resultsTextView);
-        textView.setText("Результат: " + viewModel.getResult() + " Время:" + viewModel.getTime());
+        TextView resultsTitle = view.findViewById(R.id.testPassedTitle);
+        if (viewModel.getResult() > 50)
+            resultsTitle.setText("Тест сдан!");
+        else
+            resultsTitle.setText("Тест провален!");
+
+        TextView resultsTextView = view.findViewById(R.id.resultsTextView);
+        resultsTextView.setText("Результат: " + viewModel.getResult() + "%");
+
+        TextView timeTextView = view.findViewById(R.id.timeTextView);
+        timeTextView.setText("Время:" + viewModel.getTime());
 
         PieChart pieChart = view.findViewById(R.id.resultsPieChart);
 
@@ -75,8 +85,8 @@ public class TestResultsFragment extends Fragment {
         results.add(new PieEntry(100 - result));
 
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(98, 0, 238));
         colors.add(Color.rgb(3, 218, 198));
+        colors.add(Color.rgb(98, 0, 238));
 
         PieDataSet pieDataSet = new PieDataSet(results, "");
 

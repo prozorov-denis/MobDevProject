@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdevproject.R;
 import com.example.mobdevproject.view.adapters.ExerciseAdapter;
+import com.example.mobdevproject.view_model.SchoolViewModel;
+import com.example.mobdevproject.view_model.StatisticsViewModel;
 import com.example.mobdevproject.view_model.TestViewModel;
 
 import java.util.concurrent.TimeUnit;
@@ -23,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class TestFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private TestViewModel viewModel;
+    private SchoolViewModel viewModel;
     private Chronometer chronometer;
 
     public TestFragment() { }
@@ -43,7 +45,7 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        viewModel = new ViewModelProvider(requireActivity()).get(TestViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test, container, false);
@@ -67,13 +69,9 @@ public class TestFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 long ms = SystemClock.elapsedRealtime() - chronometer.getBase();
-                long minutes = TimeUnit.MILLISECONDS.toMinutes(ms);
-                long seconds = TimeUnit.MILLISECONDS.toSeconds(ms) - TimeUnit.MINUTES.toSeconds(minutes);
-
-                String time = minutes + ":" + seconds;
-
-                viewModel.setTime(time);
-
+                viewModel.setMs_time(ms);
+                StatisticsViewModel statVM = new ViewModelProvider(requireActivity()).get(StatisticsViewModel.class);
+                statVM.UpdateStatistics(viewModel.getResult(), ms);
                 Navigation.findNavController(testFragment).navigate(R.id.action_testFragment2_to_testResultsFragment2);
             }
         });

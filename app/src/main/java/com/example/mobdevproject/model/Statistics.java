@@ -14,28 +14,50 @@ public class Statistics {
         this.id = id;
     }
 
-    public int getSeconds() {
-        return seconds;
+    public long getMsAverage() {
+        return msAverage;
     }
 
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
+    public void setMsAverage(long ms) {
+        this.msAverage = ms;
     }
 
-    public int getResult() {
-        return result;
+    public int getResultAverage() {
+        return resultAverage;
     }
 
-    public void setResult(int result) {
-        this.result = result;
+    public void setResultAverage(int result) {
+        this.resultAverage = result;
+    }
+
+    public long getMsBest() {
+        return msBest;
+    }
+
+    public void setMsBest(long ms) {
+        this.msBest = ms;
+    }
+
+    public int getResultBest() {
+        return resultBest;
+    }
+
+    public void setResultBest(int result) {
+        this.resultBest = result;
     }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "seconds")
-    public int seconds;
+    @ColumnInfo(name = "msAverage")
+    private long msAverage;
 
-    @ColumnInfo(name = "result")
-    public int result;
+    @ColumnInfo(name = "resultAverage")
+    private int resultAverage;
+
+    @ColumnInfo(name = "msBest")
+    private long msBest;
+
+    @ColumnInfo(name = "resultBest")
+    private int resultBest;
 }

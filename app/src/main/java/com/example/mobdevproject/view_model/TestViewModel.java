@@ -2,7 +2,6 @@ package com.example.mobdevproject.view_model;
 
 import androidx.lifecycle.ViewModel;
 
-
 import com.example.mobdevproject.model.Exercise;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ public class TestViewModel extends ViewModel {
     private String time;
 
     public TestViewModel() {
-        exercises_list = new ArrayList<Exercise>();
 
     }
 

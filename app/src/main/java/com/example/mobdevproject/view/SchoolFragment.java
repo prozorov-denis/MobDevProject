@@ -1,5 +1,7 @@
 package com.example.mobdevproject.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,13 +18,13 @@ import android.widget.ListView;
 
 import com.example.mobdevproject.R;
 import com.example.mobdevproject.model.Topic;
-import com.example.mobdevproject.view_model.TopicsViewModel;
+import com.example.mobdevproject.view_model.SchoolViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SchoolFragment extends Fragment {
-    private TopicsViewModel topicsViewModel;
+    private SchoolViewModel schoolViewModel;
 
     public SchoolFragment() {
         // Required empty public constructor
@@ -45,14 +47,14 @@ public class SchoolFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_school, container, false);
-        topicsViewModel = new ViewModelProvider(this).get(TopicsViewModel.class);
+        schoolViewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
         setListView(view);
 
         return view;
     }
 
     private void setListView(View view) {
-        List<Topic> topics = topicsViewModel.getTopics();
+        List<Topic> topics = schoolViewModel.getTopics();
 
         ArrayList<String> topics_titles = new ArrayList<String>();
 
@@ -69,8 +71,22 @@ public class SchoolFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                topicsViewModel.setCurrentTopic(topics_titles.get(position));
-                Navigation.findNavController(view).navigate(R.id.action_schoolFragment_to_testFragment2);
+                schoolViewModel.setCurrentTopic(topics_titles.get(position));
+
+                if (schoolViewModel.getExercises_list().size() > 0)
+                    Navigation.findNavController(view).navigate(R.id.action_schoolFragment_to_testFragment2);
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setMessage("Извините, задания для данной темы еще не добавлены. Мы это исправим в следующем обновлении!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             }
         });
     }

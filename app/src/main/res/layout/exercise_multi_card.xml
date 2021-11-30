@@ -24,13 +24,25 @@
                 android:layout_height="wrap_content"
                 android:text="Вопрос" />
 
-            <EditText
-                android:id="@+id/answer"
+            <RadioGroup
+                android:id="@+id/answersGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:inputType="text"
-                android:hint="Введите ответ" />
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/answerRadio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/answerRadio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/answerRadio3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -7,12 +7,64 @@
     tools:context=".view.AssessmentFragment">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:id="@+id/resultsTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_assessment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="26dp"
+        android:padding="12dp"
+        android:text="Результаты тестов"/>
+
+    <TextView
+        android:id="@+id/resBestStatTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/resultsTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="20dp"
+        android:background="@color/cardview_light_background"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/resAverageStatTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/resBestStatTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="20dp"
+        android:background="@color/cardview_light_background"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/timeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/resAverageStatTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="26dp"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:text="Время"/>
+
+    <TextView
+        android:id="@+id/timeBestStatTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeTitle"
+        android:textSize="20dp"
+        android:background="@color/cardview_light_background"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/timeAverageStatTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeBestStatTextView"
+        android:textSize="20dp"
+        android:background="@color/cardview_light_background"
+        android:padding="12dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
