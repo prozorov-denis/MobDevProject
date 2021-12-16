@@ -1,17 +1,17 @@
 package com.example.mobdevproject.view_model;
 
-import androidx.lifecycle.ViewModel;
-
-import com.example.mobdevproject.model.Exercise;
+//import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-public class TestViewModel extends ViewModel {
+public class TestViewModel {//extends ViewModel {
     private ArrayList<Exercise> exercises_list;
     private String time;
+    private long ms_time;
 
     public TestViewModel() {
-
+        exercises_list = new ArrayList<Exercise>();
     }
 
     public TestViewModel(ArrayList<Exercise> exercises_list) {
@@ -54,33 +54,49 @@ public class TestViewModel extends ViewModel {
         String mark_string = "";
 
         n_correct = countCorrectAnswers();
+        n_all = countExercises();
 
-        n_all = countExercises(); // 6
+        if (n_all > 0) {// 2
+            mark_double = (double) n_correct / n_all * 100; // 3
 
-        if (n_all > 0) {// 7
-            mark_double = (double) n_correct / n_all * 100; // 8
-
-            if (mark_double >= 90) // 9
-                mark_string = "Отлично"; // 10
-            else if (mark_double >= 70) // 11
-                mark_string = "Хорошо"; // 12
-            else if (mark_double >= 50) // 13
-                mark_string = "Удовлетворительно"; // 14
+            if (mark_double >= 90) // 4
+                mark_string = "Отлично"; // 5
+            else if (mark_double >= 70) // 6
+                mark_string = "Хорошо"; // 7
+            else if (mark_double >= 50) // 8
+                mark_string = "Удовлетворительно"; // 9
             else
-                mark_string = "Неудовлетворительно"; // 15
+                mark_string = "Неудовлетворительно"; // 10
         }   else {
-            mark_string = "Ошибка"; // 16
+            mark_string = "Ошибка"; // 11
         }
 
-        return mark_string; // 17
+        return mark_string; // 12
     }
 
-    public String getTime() {
-        return time;
+    public String getTime() { // 1
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(ms_time);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(ms_time) - TimeUnit.MINUTES.toSeconds(minutes);
+
+        String minutes_str;
+
+        if (minutes < 10) // 2
+            minutes_str = "0" + minutes; // 3
+        else
+            minutes_str = "" + minutes; // 4
+
+        String seconds_str;
+
+        if (seconds < 10) // 5
+            seconds_str = "0" + seconds; // 6
+        else
+            seconds_str = "" + seconds; // 7
+
+        return minutes_str + ":" + seconds_str; // 8
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setMs(long ms) {
+        this.ms_time = ms;
     }
 
     public int countExercises()

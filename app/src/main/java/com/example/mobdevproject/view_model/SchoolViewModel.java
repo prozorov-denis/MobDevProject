@@ -55,7 +55,7 @@ public class SchoolViewModel extends AndroidViewModel {
         int n = 10;
 
         List<Exercise> exListAll = db.englishDAO().getExercisesListForTopic(topic.getId());
-        Collections.shuffle(exListAll);
+        //Collections.shuffle(exListAll);
 
         if (n > exListAll.size())
             n = exListAll.size();
@@ -77,27 +77,25 @@ public class SchoolViewModel extends AndroidViewModel {
         this.exercises_list = exercises_list;
     }
 
-    public String getTime() {
+    public String getTime() { // 1
         long minutes = TimeUnit.MILLISECONDS.toMinutes(ms_time);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(ms_time) - TimeUnit.MINUTES.toSeconds(minutes);
 
         String minutes_str;
 
-        if (minutes < 10)
-            minutes_str = "0" + minutes;
+        if (minutes < 10) // 2
+            minutes_str = "0" + minutes; // 3
         else
-            minutes_str = "" + minutes;
+            minutes_str = "" + minutes; // 4
 
         String seconds_str;
 
-        if (seconds < 10)
-            seconds_str = "0" + seconds;
+        if (seconds < 10) // 5
+            seconds_str = "0" + seconds; // 6
         else
-            seconds_str = "" + seconds;
+            seconds_str = "" + seconds; // 7
 
-        String time = minutes_str + ":" + seconds_str;
-
-        return time;
+        return minutes_str + ":" + seconds_str; // 8
     }
 
     public int countCorrectAnswers() {
@@ -133,4 +131,31 @@ public class SchoolViewModel extends AndroidViewModel {
         this.ms_time = ms_time;
     }
 
+    public String getMark() { // 1
+        int n_correct = 0;
+        int n_all = 0;
+        double mark_double = 0;
+        String mark_string = "";
+
+        n_correct = countCorrectAnswers();
+
+        n_all = exercises_list.size(); // 6
+
+        if (n_all > 0) {// 7
+            mark_double = (double) n_correct / n_all * 100; // 8
+
+            if (mark_double >= 90) // 9
+                mark_string = "Отлично"; // 10
+            else if (mark_double >= 70) // 11
+                mark_string = "Хорошо"; // 12
+            else if (mark_double >= 50) // 13
+                mark_string = "Удовлетворительно"; // 14
+            else
+                mark_string = "Неудовлетворительно"; // 15
+        }   else {
+            mark_string = "Ошибка"; // 16
+        }
+
+        return mark_string; // 17
+    }
 }

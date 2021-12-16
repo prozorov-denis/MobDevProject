@@ -50,10 +50,12 @@ public class TestResultsFragment extends Fragment {
         View view = inflater.inflate(R.layout.test_results_fragment, container, false);
 
         TextView resultsTitle = view.findViewById(R.id.testPassedTitle);
-        if (viewModel.getResult() > 50)
-            resultsTitle.setText("Тест сдан!");
-        else
-            resultsTitle.setText("Тест провален!");
+//        if (viewModel.getResult() > 50)
+//            resultsTitle.setText("Тест сдан!");
+//        else
+//            resultsTitle.setText("Тест провален!");
+
+        resultsTitle.setText(viewModel.getMark());
 
         TextView resultsTextView = view.findViewById(R.id.resultsTextView);
         resultsTextView.setText("Результат: " + viewModel.getResult() + "%");

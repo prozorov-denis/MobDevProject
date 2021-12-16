@@ -8,10 +8,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-import com.example.mobdevproject.model.Exercise;
+import com.example.mobdevproject.view_model.Exercise;
 import com.example.mobdevproject.view_model.TestViewModel;
 
 import java.util.ArrayList;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -166,5 +167,50 @@ public class ExampleUnitTest {
         testViewModel = new TestViewModel(exercises_list);
 
         assertEquals("Ошибка", testViewModel.getMark());
+    }
+
+    @Test
+    public void time_test1() {
+        TestViewModel testViewModel = new TestViewModel();
+
+        testViewModel.setMs(1000);
+
+        assertEquals("00:01", testViewModel.getTime());
+    }
+
+    @Test
+    public void time_test2() {
+        TestViewModel testViewModel = new TestViewModel();
+
+        testViewModel.setMs(10000);
+
+        assertEquals("00:10", testViewModel.getTime());
+    }
+
+    @Test
+    public void time_test3() {
+        TestViewModel testViewModel = new TestViewModel();
+
+        testViewModel.setMs(60000);
+
+        assertEquals("01:00", testViewModel.getTime());
+    }
+
+    @Test
+    public void time_test4() {
+        TestViewModel testViewModel = new TestViewModel();
+
+        testViewModel.setMs(600000);
+
+        assertEquals("10:00", testViewModel.getTime());
+    }
+
+    @Test
+    public void time_test5() {
+        TestViewModel testViewModel = new TestViewModel();
+
+        testViewModel.setMs(610000);
+
+        assertEquals("10:10", testViewModel.getTime());
     }
 }
